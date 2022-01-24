@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="system" method="upgrade">
+	<name>plg_system_bfredirectonlogin</name>
+	<creationDate>January 2022</creationDate>
+	<author>Jonathan Brain</author>
+	<authorEmail>brainforge.uk@btinternet.com</authorEmail>
+	<authorUrl>https://www.brainforge.co.uk</authorUrl>
+	<copyright>Copyright (C) 2022 Jonathan Brain - All rights reserved.</copyright>
+	<version>1.0.0</version>
+	<description>PLG_SYSTEM_BFREDIRECTONLOGIN_XML_DESCRIPTION</description>
+
+	<files>
+		<filename plugin="bfredirectonlogin">bfredirectonlogin.php</filename>
+		<folder>language</folder>
+	</files>
+
+	<config>
+		<fields name="params">
+			<fieldset
+					name="basic"
+			>
+				<field
+						name="redirects"
+						type="subform"
+						label="PLG_SYSTEM_BFREDIRECTONLOGIN_REDIRECTS_LABEL"
+						description="PLG_SYSTEM_BFREDIRECTONLOGIN_REDIRECTS_DESC"
+						multiple="true"
+						min="0"
+				>
+					<form>
+						<fieldset
+								name="col1"
+						>
+							<field
+									name="usergroup"
+									type="usergrouplist"
+									label="PLG_SYSTEM_BFREDIRECTONLOGIN_USERGROUP_LABEL"
+									required="true"
+							>
+								<option value=""></option>
+							</field>
+
+							<field
+									name="target"
+									type="text"
+									label="PLG_SYSTEM_BFREDIRECTONLOGIN_TARGET_LABEL"
+									description="PLG_SYSTEM_BFREDIRECTONLOGIN_TARGET_DESC"
+									hint="index.php/somewhere"
+									required="true"
+							/>
+
+							<field
+									name="state"
+									type="radio"
+									label="JSTATUS"
+									description="JFIELD_PUBLISHED_DESC"
+									class="btn-group btn-group-yesno"
+									filter="intval"
+									size="1"
+									default="1"
+							>
+								<option value="0">JUNPUBLISHED</option>
+								<option value="1">JPUBLISHED</option>
+							</field>
+						</fieldset>
+					</form>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+
+	<updateservers>
+		<server type="extension" priority="1" name="PLG_SYSTEM_BFREDIRECTONLOGIN">
+			https://brainforge.co.uk/component/bfupdater?element=plg_system_bfredirectonlogin.xml
+		</server>
+	</updateservers>
+</extension>
