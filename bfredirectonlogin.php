@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Router\Route;
+use Joomla\CMS\Uri\Uri;
 
 /**
  * Joomla! System Remember Me Plugin
@@ -40,18 +41,33 @@ class PlgSystemBfredirectonlogin extends CMSPlugin
 		}
 
 		$identity = $this->app->getIdentity();
+		if ($identity->guest)
+		{
+			return;
+		}
 
 		if ($this->app->getUserState('bfredirectonlogin.userid', 0) == $identity->id)
 		{
 			// Redirection previously used in this session
 			return;
 		}
+		$this->app->setUserState('bfredirectonlogin.userid', $identity->id);
+
+		$current = trim(
+			substr(Uri::getInstance()->toString(['scheme', 'host', 'port', 'path', 'query']),
+				strlen(Uri::base())), '/');
 
 		foreach((array)$redirects as $redirect)
 		{
 			if ($redirect->state && in_array($redirect->usergroup, $identity->groups))
 			{
-				$this->app->setUserState('bfredirectonlogin.userid', $identity->id);
+				if (!empty($redirect->target))
+				{
+					if (!preg_match("\001" . $redirect->target . "\001", trim($current, '/')))
+					{
+						continue;
+					}
+				}
 
 				$url = Route::_($redirect->target, false);
 				$this->app->redirect($url);

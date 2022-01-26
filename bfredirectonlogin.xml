@@ -6,7 +6,7 @@
 	<authorEmail>brainforge.uk@btinternet.com</authorEmail>
 	<authorUrl>https://www.brainforge.co.uk</authorUrl>
 	<copyright>Copyright (C) 2022 Jonathan Brain - All rights reserved.</copyright>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<description>PLG_SYSTEM_BFREDIRECTONLOGIN_XML_DESCRIPTION</description>
 
 	<files>
@@ -39,6 +39,14 @@
 							>
 								<option value=""></option>
 							</field>
+
+							<field
+									name="trigger"
+									type="text"
+									label="PLG_SYSTEM_BFREDIRECTONLOGIN_TRIGGER_LABEL"
+									description="PLG_SYSTEM_BFREDIRECTONLOGIN_TRIGGER_DESC"
+									hint="(^$)|(^index.php$)"
+							/>
 
 							<field
 									name="target"
