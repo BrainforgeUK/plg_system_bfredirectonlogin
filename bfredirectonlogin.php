@@ -50,9 +50,9 @@ class PlgSystemBfredirectonlogin extends CMSPlugin
 		{
 			if ($redirect->state && in_array($redirect->usergroup, $identity->groups))
 			{
-				if (!empty($redirect->target))
+				if (!empty($redirect->trigger))
 				{
-					if (!preg_match("\001" . $redirect->target . "\001", trim($current, '/')))
+					if (!preg_match("\001" . $redirect->trigger . "\001", trim($current, '/')))
 					{
 						continue;
 					}
