@@ -41,17 +41,6 @@ class PlgSystemBfredirectonlogin extends CMSPlugin
 		}
 
 		$identity = $this->app->getIdentity();
-		if ($identity->guest)
-		{
-			return;
-		}
-
-		if ($this->app->getUserState('bfredirectonlogin.userid', 0) == $identity->id)
-		{
-			// Redirection previously used in this session
-			return;
-		}
-		$this->app->setUserState('bfredirectonlogin.userid', $identity->id);
 
 		$current = trim(
 			substr(Uri::getInstance()->toString(['scheme', 'host', 'port', 'path', 'query']),
@@ -68,6 +57,15 @@ class PlgSystemBfredirectonlogin extends CMSPlugin
 						continue;
 					}
 				}
+
+				if ($redirect->onceonly &&
+					$this->app->getUserState('bfredirectonlogin.userid', 0) == $identity->id)
+				{
+					// Redirection previously used in this session
+					return;
+				}
+
+				$this->app->setUserState('bfredirectonlogin.userid', $identity->id);
 
 				$url = Route::_($redirect->target, false);
 				$this->app->redirect($url);

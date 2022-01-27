@@ -6,7 +6,7 @@
 	<authorEmail>brainforge.uk@btinternet.com</authorEmail>
 	<authorUrl>https://www.brainforge.co.uk</authorUrl>
 	<copyright>Copyright (C) 2022 Jonathan Brain - All rights reserved.</copyright>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<description>PLG_SYSTEM_BFREDIRECTONLOGIN_XML_DESCRIPTION</description>
 
 	<files>
@@ -45,7 +45,7 @@
 									type="text"
 									label="PLG_SYSTEM_BFREDIRECTONLOGIN_TRIGGER_LABEL"
 									description="PLG_SYSTEM_BFREDIRECTONLOGIN_TRIGGER_DESC"
-									hint="(^$)|(^index.php$)"
+									hint=""
 							/>
 
 							<field
@@ -56,6 +56,20 @@
 									hint="index.php/somewhere"
 									required="true"
 							/>
+
+							<field
+									name="onceonly"
+									type="radio"
+									label="PLG_SYSTEM_BFREDIRECTONLOGIN_ONCEONLY_LABEL"
+									description="PLG_SYSTEM_BFREDIRECTONLOGIN_ONCEONLY_DESC"
+									class="btn-group btn-group-yesno"
+									filter="intval"
+									size="1"
+									default="1"
+							>
+								<option value="0">JNO</option>
+								<option value="1">JYES</option>
+							</field>
 
 							<field
 									name="state"
@@ -73,6 +87,16 @@
 						</fieldset>
 					</form>
 				</field>
+			</fieldset>
+
+			<fieldset
+					name="description"
+			>
+				<field
+						name="note"
+						type="note"
+						description="PLG_SYSTEM_BFREDIRECTONLOGIN_DESCRIPTION"
+				/>
 			</fieldset>
 		</fields>
 	</config>
