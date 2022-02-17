@@ -2,11 +2,12 @@
 <extension type="plugin" group="system" method="upgrade">
 	<name>plg_system_bfredirectonlogin</name>
 	<creationDate>January 2022</creationDate>
+	<version>1.0.2</version>
 	<author>Jonathan Brain</author>
 	<authorEmail>brainforge.uk@btinternet.com</authorEmail>
 	<authorUrl>https://www.brainforge.co.uk</authorUrl>
 	<copyright>Copyright (C) 2022 Jonathan Brain - All rights reserved.</copyright>
-	<version>1.0.2</version>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<description>PLG_SYSTEM_BFREDIRECTONLOGIN_XML_DESCRIPTION</description>
 
 	<files>
