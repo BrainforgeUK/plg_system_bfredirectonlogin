@@ -28,9 +28,17 @@ class PlgSystemBfredirectonlogin extends CMSPlugin
 	 */
 	public function onAfterInitialise()
 	{
-		// Only implemented for site.
-		if (!$this->app->isClient('site'))
+		if ($this->app->isClient('site'))
 		{
+			$application = 0;
+		}
+		else if ($this->app->isClient('administrator'))
+		{
+			$application = 1;
+		}
+		else
+		{
+			// Ignore other applications, such as CLI.
 			return;
 		}
 
@@ -48,7 +56,9 @@ class PlgSystemBfredirectonlogin extends CMSPlugin
 
 		foreach((array)$redirects as $redirect)
 		{
-			if ($redirect->state && in_array($redirect->usergroup, $identity->groups))
+			if ($redirect->state &&
+				($redirect->application ?? 0) == $application &&
+				in_array($redirect->usergroup, $identity->groups))
 			{
 				if (!empty($redirect->trigger))
 				{
