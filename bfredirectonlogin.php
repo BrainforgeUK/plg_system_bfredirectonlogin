@@ -48,7 +48,14 @@ class PlgSystemBfredirectonlogin extends CMSPlugin
 			return;
 		}
 
-		$identity = $this->app->getIdentity();
+		if (version_compare(JVERSION,'4.0.0','>='))
+		{
+			$identity = $this->app->getIdentity();
+		}
+		else
+		{
+			$identity = Factory::getUser();
+		}
 
 		$current = trim(
 			substr(Uri::getInstance()->toString(['scheme', 'host', 'port', 'path', 'query']),
